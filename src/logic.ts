@@ -6,8 +6,16 @@ type Product = {
 };
  
 function filterAndSortProducts(products: Product[]): Product[] {
-    // Your code goes here
-    return [] 
+    const uniqueProductsMap = new Map<string, Product>();
+        
+    products.forEach(product => {
+        uniqueProductsMap.set(product.name, product);
+    });
+    
+    const uniqueProducts = Array.from(uniqueProductsMap.values());
+    uniqueProducts.sort((a, b) => a.price - b.price);
+    
+    return uniqueProducts;
 }
 
 module.exports = { filterAndSortProducts }
