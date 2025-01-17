@@ -15,6 +15,7 @@ async function fetchLongPosts(): Promise<APIResponseType[]> {
     try {
         const response = await axios.get<APIResponseType[]>('https://jsonplaceholder.typicode.com/posts');
         const posts = response.data;
+        //A long body exceeding 100 characters is here... - is less than 100
         const longPosts = posts.filter(post => post.body.length > 100 || post.id==2);
         return longPosts;
     } catch (error) {
